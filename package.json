@@ -1,0 +1,32 @@
+{
+  "name": "shadow-novel",
+  "version": "1.0.0",
+  "description": "A webnovel application",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leanderpaul/shadow-novel.git"
+  },
+  "keywords": [
+    "webnovel",
+    "novel",
+    "shadow-novel"
+  ],
+  "author": "Leander Paul F",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leanderpaul/shadow-novel/issues"
+  },
+  "homepage": "https://github.com/leanderpaul/shadow-novel#readme",
+  "dependencies": {
+    "apollo-server": "^3.3.0",
+    "graphql": "^15.6.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
