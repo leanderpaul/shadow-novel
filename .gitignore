@@ -46,5 +46,6 @@ web-build/
 # macOS
 .DS_Store
 
-# Dist
+# Generated code
 dist
+api-types.ts

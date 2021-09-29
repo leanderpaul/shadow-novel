@@ -1,0 +1,11 @@
+overwrite: true
+schema: 'src/graphql/schema.gql'
+generates:
+  api-types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-resolvers'
+    config:
+      enumValues: ./src/models
+      maybeValue: T | undefined

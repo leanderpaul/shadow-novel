@@ -1,0 +1,130 @@
+scalar Date
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum NovelType {
+  LIGHT_NOVEL
+  CHINEESE_TRANSLATED
+  KOREAN_TRANSLATED
+  WEBNOVEL_ORIGINAL
+  ROYAL_ROAD_ORIGINAL
+}
+
+enum NovelStatus {
+  ONGOING
+  COMPLETED
+  HIATUS
+}
+
+enum Genre {
+  ACTION
+  ADULT
+  ADVENTURE
+  COMEDY
+  DRAMA
+  ECCHI
+  FANTASY
+  GENDER_BENDER
+  HAREM
+  HISTORICAL
+  HORROR
+  JOSEI
+  MARTIAL_ARTS
+  MATURE
+  MECHA
+  MYSTERY
+  PSYCHOLOGICAL
+  ROMANCE
+  SCHOOL_LIFE
+  SCI_FI
+  SEINEN
+  SHOUJO
+  SHOUJO_AI
+  SHOUNEN
+  SHOUNEN_AI
+  SLICE_OF_LIFE
+  SMUT
+  SPORTS
+  SUPERNATURAL
+  TRAGEDY
+  WUXIA
+  XIANXIA
+  XUANHUAN
+  YAOI
+  YURI
+}
+
+type Volume {
+  vid: ID!
+  name: String!
+  desc: [String]!
+  chapterCount: Int!
+}
+
+type Chapter {
+  nid: ID!
+  index: Int!
+  title: String!
+  content: [String!]!
+  createdAt: Date!
+}
+
+type Novel {
+  nid: ID!
+  cover: String
+  author: String!
+  title: String!
+  type: NovelType!
+  genre: [Genre!]!
+  tags: [String!]!
+  status: NovelStatus!
+  summary: [String!]!
+  chapterCount: Int!
+  views: Int!
+  volumes: [Volume!]
+  createdAt: Date!
+  chapters: [Chapter!]!
+  chapter(index: Int!): Chapter
+}
+
+type PageInfo {
+  offset: Int!
+  limit: Int!
+}
+
+type NovelPagination {
+  items: [Novel!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input NovelFilter {
+  title: String
+  author: String
+  genre: [Genre!]
+  tags: [String!]
+  type: NovelType
+  status: NovelStatus
+  offset: Int
+  limit: Int
+}
+
+enum NovelSortField {
+  TITLE
+  CHAPTER_COUNT
+  VIEWS
+  CREATED_AT
+}
+
+input NovelSort {
+  field: NovelSortField!
+  order: SortOrder!
+}
+
+type Query {
+  novels(filter: NovelFilter = {}, sort: NovelSort = {}): NovelPagination
+  novel(nid: ID!): Novel
+}
