@@ -20,41 +20,12 @@ enum NovelStatus {
 }
 
 enum Genre {
-  ACTION
-  ADULT
-  ADVENTURE
-  COMEDY
-  DRAMA
-  ECCHI
-  FANTASY
-  GENDER_BENDER
-  HAREM
-  HISTORICAL
-  HORROR
-  JOSEI
-  MARTIAL_ARTS
-  MATURE
-  MECHA
-  MYSTERY
-  PSYCHOLOGICAL
-  ROMANCE
-  SCHOOL_LIFE
-  SCI_FI
-  SEINEN
-  SHOUJO
-  SHOUJO_AI
-  SHOUNEN
-  SHOUNEN_AI
-  SLICE_OF_LIFE
-  SMUT
-  SPORTS
-  SUPERNATURAL
-  TRAGEDY
-  WUXIA
-  XIANXIA
-  XUANHUAN
-  YAOI
-  YURI
+  CONTEMPORARY_ROMANCE
+  EASTERN_FANTASY
+  MAGICAL_REALISM
+  SCIENCE_FICTION
+  VIDEO_GAMES
+  WESTERN_FANTASY
 }
 
 type Volume {
@@ -78,7 +49,7 @@ type Novel {
   author: String!
   title: String!
   type: NovelType!
-  genre: [Genre!]!
+  genre: Genre!
   tags: [String!]!
   status: NovelStatus!
   summary: [String!]!
@@ -101,17 +72,6 @@ type NovelPagination {
   totalCount: Int!
 }
 
-input NovelFilter {
-  title: String
-  author: String
-  genre: [Genre!]
-  tags: [String!]
-  type: NovelType
-  status: NovelStatus
-  offset: Int
-  limit: Int
-}
-
 enum NovelSortField {
   TITLE
   CHAPTER_COUNT
@@ -125,6 +85,6 @@ input NovelSort {
 }
 
 type Query {
-  novels(filter: NovelFilter = {}, sort: NovelSort = {}): NovelPagination
+  novels(title: String, author: String, genre: Genre, tags: [String!], type: NovelType, status: NovelStatus, offset: Int, limit: Int, sort: NovelSort): NovelPagination
   novel(nid: ID!): Novel
 }

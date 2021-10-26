@@ -2,12 +2,14 @@
  * Importing npm packages.
  */
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 /**
  * Importing npm design components.
  */
-import { NativeBaseProvider } from 'native-base';
+// import { StatusBar } from 'expo-status-bar';
+import { NativeBaseProvider, Box } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -37,20 +39,23 @@ import { theme } from './utils/config';
  * Constants.
  */
 const Tab = createBottomTabNavigator();
-const client = new ApolloClient({ uri: 'http://', cache: new InMemoryCache() });
+const client = new ApolloClient({ uri: 'http://192.168.0.101:8080', cache: new InMemoryCache() });
 
 function App() {
   return (
     <NativeBaseProvider theme={theme}>
       <ApolloProvider client={client}>
-        <NavigationContainer>
-          <Tab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
-            <Tab.Screen name='Library' component={Library} />
-            <Tab.Screen name='Explore' component={Explore} />
-            <Tab.Screen name='Updates' component={Updates} />
-            <Tab.Screen name='Settings' component={Settings} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <StatusBar barStyle='light-content' />
+        <Box bgColor='black' safeArea w='100%' h='100%'>
+          <NavigationContainer>
+            <Tab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
+              <Tab.Screen name='Library' component={Library} />
+              <Tab.Screen name='Explore' component={Explore} />
+              <Tab.Screen name='Updates' component={Updates} />
+              <Tab.Screen name='Settings' component={Settings} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </Box>
       </ApolloProvider>
     </NativeBaseProvider>
   );

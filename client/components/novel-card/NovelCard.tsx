@@ -6,7 +6,7 @@ import React from 'react';
 /**
  * Importing npm design components.
  */
-import { Box, Text } from 'native-base';
+import { VStack } from 'native-base';
 
 /**
  * Importing user defined components.
@@ -24,12 +24,8 @@ import { Box, Text } from 'native-base';
  * Importing types.
  */
 
-function Library() {
-  return (
-    <Box bgColor='black' w='100%' h='100%' display='flex' justifyContent='center' alignItems='center'>
-      <Text>Library</Text>
-    </Box>
-  );
+function NovelCard() {
+  return <VStack></VStack>;
 }
 
-export default Library;
+export default NovelCard;

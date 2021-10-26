@@ -21,41 +21,12 @@ export enum NovelType {
 }
 
 export enum Genre {
-  ACTION = 'ACTION',
-  ADULT = 'ADULT',
-  ADVENTURE = 'ADVENTURE',
-  COMEDY = 'COMEDY',
-  DRAMA = 'DRAMA',
-  ECCHI = 'ECCHI',
-  FANTASY = 'FANTASY',
-  GENDER_BENDER = 'GENDER_BENDER',
-  HAREM = 'HAREM',
-  HISTORICAL = 'HISTORICAL',
-  HORROR = 'HORROR',
-  JOSEI = 'JOSEI',
-  MARTIAL_ARTS = 'MARTIAL_ARTS',
-  MATURE = 'MATURE',
-  MECHA = 'MECHA',
-  MYSTERY = 'MYSTERY',
-  PSYCHOLOGICAL = 'PSYCHOLOGICAL',
-  ROMANCE = 'ROMANCE',
-  SCHOOL_LIFE = 'SCHOOL_LIFE',
-  SCI_FI = 'SCI_FI',
-  SEINEN = 'SEINEN',
-  SHOUJO = 'SHOUJO',
-  SHOUJO_AI = 'SHOUJO_AI',
-  SHOUNEN = 'SHOUNEN',
-  SHOUNEN_AI = 'SHOUNEN_AI',
-  SLICE_OF_LIFE = 'SLICE_OF_LIFE',
-  SMUT = 'SMUT',
-  SPORTS = 'SPORTS',
-  SUPERNATURAL = 'SUPERNATURAL',
-  TRAGEDY = 'TRAGEDY',
-  WUXIA = 'WUXIA',
-  XIANXIA = 'XIANXIA',
-  XUANHUAN = 'XUANHUAN',
-  YAOI = 'YAOI',
-  YURI = 'YURI',
+  CONTEMPORARY_ROMANCE = 'CONTEMPORARY_ROMANCE',
+  EASTERN_FANTASY = 'EASTERN_FANTASY',
+  MAGICAL_REALISM = 'MAGICAL_REALISM',
+  SCIENCE_FICTION = 'SCIENCE_FICTION',
+  VIDEO_GAMES = 'VIDEO_GAMES',
+  WESTERN_FANTASY = 'WESTERN_FANTASY',
 }
 
 export enum NovelStatus {
@@ -77,7 +48,7 @@ export interface INovel {
   author: string;
   title: string;
   type: NovelType;
-  genre: Genre[];
+  genre: Genre;
   tags: string[];
   status: NovelStatus;
   summary: string[];
@@ -138,7 +109,7 @@ const novelSchema = new Schema<INovel, Model<INovel>, INovel>(
       type: String,
     },
     genre: {
-      type: [String],
+      type: String,
       required: true,
       enum: Object.keys(Genre),
     },

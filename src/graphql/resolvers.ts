@@ -1,6 +1,7 @@
 /**
  * Importing npm packages.
  */
+import sagus from 'sagus';
 
 /**
  * Importing user defined packages.
@@ -23,7 +24,8 @@ export const resolvers: Resolvers = {
       return novel ? { ...novel, chapters: [] } : undefined;
     },
     async novels(_parent, args, _context, _info) {
-      const novelList = await NovelLib.list(args.filter, args.sort);
+      const filter = sagus.removeKeys(args, ['sort']);
+      const novelList = await NovelLib.list(filter, args.sort);
       return { ...novelList, items: novelList.items.map((novel) => ({ ...novel, chapters: [] })) };
     },
   },

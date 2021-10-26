@@ -7,7 +7,7 @@
     "test": "jest",
     "generate-types": "graphql-codegen --config codegen.yml",
     "scraper": "ts-node src/scraper.ts",
-    "dev": "ts-node src/index.ts"
+    "dev": " npm run generate-types && ts-node src/index.ts"
   },
   "repository": {
     "type": "git",

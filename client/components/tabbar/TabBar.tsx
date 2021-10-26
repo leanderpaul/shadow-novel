@@ -7,7 +7,6 @@ import React from 'react';
  * Importing npm design components.
  */
 import { Box, HStack, VStack, Text, theme } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 /**
  * Importing user defined components.

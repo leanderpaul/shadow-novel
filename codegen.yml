@@ -9,3 +9,11 @@ generates:
     config:
       enumValues: ./src/models
       maybeValue: T | undefined
+  client/graphql.types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+    config:
+      maybeValue: T | undefined
+      namingConvention:
+        enumValues: change-case-all#upperCase

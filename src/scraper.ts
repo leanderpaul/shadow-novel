@@ -47,7 +47,7 @@ async function createNewNovel() {
     { name: 'title', message: 'Enter novel title: ' },
     { name: 'author', message: 'Enter novel author: ' },
     { name: 'coverURL', message: 'Enter novel cover url: ' },
-    { name: 'genre', message: 'Select the novel genres: ', type: 'checkbox', choices: Object.keys(Genre) },
+    { name: 'genre', message: 'Select the novel genres: ', type: 'list', choices: Object.keys(Genre) },
     { name: 'tags', message: 'Enter the novel tags seperated with comma: ' },
     { name: 'summary', message: 'Enter the novel summary: ', type: 'editor' },
     { name: 'hasVolumes', message: 'Does this novel have volumes: ', type: 'confirm' },

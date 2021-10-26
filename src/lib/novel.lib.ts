@@ -54,13 +54,13 @@ class NovelLib {
     return novel;
   }
 
-  static async list(filter: NovelFilter = { offset: 0, limit: 20 }, sort: NovelSort = { field: NovelSortField.TITLE, order: SortOrder.ASC }) {
+  static async list(filter: NovelFilter = {}, sort: NovelSort = { field: NovelSortField.TITLE, order: SortOrder.ASC }) {
     const query = Novel.find();
     const offset = filter.offset && filter.offset > 0 ? filter.offset : 0;
     const limit = filter.limit ? (filter.limit > 0 && filter.limit <= 100 ? filter.limit : filter.limit > 100 ? 100 : 0) : 20;
     if (filter.title) query.where('title', new RegExp(filter.title, 'i'));
     if (filter.author) query.where('author', filter.author);
-    if (filter.genre && filter.genre.length > 0) query.all('genre', filter.genre);
+    if (filter.genre) query.where('genre', filter.genre);
     if (filter.status) query.where('status', filter.status);
     if (filter.tags && filter.tags.length > 0) query.all('tags', filter.tags);
     if (filter.type) query.where('type', filter.type);
