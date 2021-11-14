@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client';
 
 /**
  * Importing npm design components.
@@ -20,12 +20,13 @@ import Explore from './screens/explore/Explore';
 import Library from './screens/library/Library';
 import TabBar from './components/tabbar/TabBar';
 import Settings from './screens/settings/Settings';
-import Updates from './screens/updates/Updates';
+import Discover from './screens/discover/Discover';
 
 /**
  *  Importing user defined modules.
  */
 import { theme } from './utils/config';
+import { getServerURL } from './utils/helpers';
 
 /**
  * Importing styled components.
@@ -39,7 +40,13 @@ import { theme } from './utils/config';
  * Constants.
  */
 const Tab = createBottomTabNavigator();
-const client = new ApolloClient({ uri: 'http://192.168.0.101:8080', cache: new InMemoryCache() });
+const link = new HttpLink({
+  fetch: async (uri, options) => {
+    const url = await getServerURL();
+    return await fetch(url, options);
+  }
+});
+const client = new ApolloClient({ link, cache: new InMemoryCache(), connectToDevTools: true });
 
 function App() {
   return (
@@ -50,8 +57,8 @@ function App() {
           <NavigationContainer>
             <Tab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
               <Tab.Screen name='Library' component={Library} />
+              <Tab.Screen name='Discover' component={Discover} />
               <Tab.Screen name='Explore' component={Explore} />
-              <Tab.Screen name='Updates' component={Updates} />
               <Tab.Screen name='Settings' component={Settings} />
             </Tab.Navigator>
           </NavigationContainer>

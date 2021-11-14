@@ -6,6 +6,7 @@ import React from 'react';
 /**
  * Importing npm design components.
  */
+import FAIcon from 'react-native-vector-icons/FontAwesome5';
 import { Box, HStack, VStack, Text, theme } from 'native-base';
 
 /**
@@ -26,7 +27,12 @@ import TabItem from './TabItem';
  */
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
-const ICON_MAPPING: Record<string, string> = { Library: 'book', Explore: 'compass', Updates: 'history', Settings: 'cog' };
+const ICON_MAPPING: Record<string, string> = {
+  Library: 'book',
+  Explore: 'compass',
+  Discover: 'globe',
+  Settings: 'cog'
+};
 
 function TabBar(props: BottomTabBarProps) {
   const { state, navigation } = props;

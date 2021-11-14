@@ -7,7 +7,7 @@ import React from 'react';
  * Importing npm design components.
  */
 import { VStack, Text } from 'native-base';
-import NovelCover from '../novel-cover/NovelCover';
+import NovelCover, { COVER_SIZES } from '../novel-cover/NovelCover';
 
 /**
  * Importing user defined components.
@@ -33,7 +33,7 @@ function NovelVCard(props: NovelVCardProps) {
   return (
     <VStack>
       <NovelCover src={props.cover} alt={props.title} />
-      <Text w='60px' h='20px'>
+      <Text w={COVER_SIZES.md.w} mt='10px' isTruncated noOfLines={2}>
         {props.title}
       </Text>
     </VStack>

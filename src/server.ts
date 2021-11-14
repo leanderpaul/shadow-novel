@@ -1,6 +1,7 @@
 /**
  * Importing npm packages.
  */
+import morgan from 'morgan';
 import mongoose from 'mongoose';
 import { ApolloServer } from 'apollo-server';
 
@@ -17,6 +18,7 @@ import { typeDefs, resolvers } from './graphql';
  * Declaring the constants.
  */
 const DB_URI = process.env['DB'] || 'mongodb://localhost/shadow-novel';
+
 const server = new ApolloServer({ typeDefs, resolvers });
 
 mongoose.connect(DB_URI);

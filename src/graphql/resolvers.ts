@@ -25,9 +25,10 @@ export const resolvers: Resolvers = {
     },
     async novels(_parent, args, _context, _info) {
       const filter = sagus.removeKeys(args, ['sort']);
+      console.log(args);
       const novelList = await NovelLib.list(filter, args.sort);
-      return { ...novelList, items: novelList.items.map((novel) => ({ ...novel, chapters: [] })) };
-    },
+      return { ...novelList, items: novelList.items.map(novel => ({ ...novel, chapters: [] })) };
+    }
   },
   Novel: {
     async chapter(parent, args, _context, _info) {
@@ -36,7 +37,7 @@ export const resolvers: Resolvers = {
     },
     async chapters(parent, args, _context, _info) {
       const chapters = await ChapterLib.list(parent.nid);
-      return chapters.map((chapter) => ({ ...chapter, content: [] }));
-    },
-  },
+      return chapters.map(chapter => ({ ...chapter, content: [] }));
+    }
+  }
 };

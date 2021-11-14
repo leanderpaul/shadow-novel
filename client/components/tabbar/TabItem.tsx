@@ -39,7 +39,7 @@ function TabItem(props: TabItemProps) {
     <Pressable onPress={props.onPress} w='25%'>
       <VStack h='100%' display='flex' justifyContent='center' alignItems='center'>
         <Icon name={props.icon} color={color} size={17} />
-        <Text color={color} fontSize='14px'>
+        <Text color={color} fontSize='14px' mt='4px'>
           {props.label}
         </Text>
       </VStack>
